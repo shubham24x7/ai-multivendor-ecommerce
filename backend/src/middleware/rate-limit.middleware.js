@@ -17,3 +17,14 @@ export const authLimiter = rateLimit({
     message: "Too many authentication attempts. Please try again later."
   }
 });
+
+export const aiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 40,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: "AI request limit reached. Please try again later."
+  }
+});

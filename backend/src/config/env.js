@@ -28,5 +28,17 @@ export const env = {
     apiKey: process.env.CLOUDINARY_API_KEY,
     apiSecret: process.env.CLOUDINARY_API_SECRET
   },
+  ai: {
+    defaultProvider: process.env.AI_DEFAULT_PROVIDER || "openai",
+    requestTimeoutMs: Number(process.env.AI_REQUEST_TIMEOUT_MS || 30000),
+    openai: {
+      apiKey: process.env.OPENAI_API_KEY,
+      model: process.env.OPENAI_MODEL || "gpt-4o-mini"
+    },
+    gemini: {
+      apiKey: process.env.GEMINI_API_KEY,
+      model: process.env.GEMINI_MODEL || "gemini-1.5-flash"
+    }
+  },
   swaggerServerUrl: process.env.SWAGGER_SERVER_URL || "http://localhost:5000/api/v1"
 };

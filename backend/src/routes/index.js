@@ -1,5 +1,6 @@
 import { Router } from "express";
 import adminRoutes from "./admin.routes.js";
+import aiRoutes from "./ai.routes.js";
 import authRoutes from "./auth.routes.js";
 import categoryRoutes from "./category.routes.js";
 import couponRoutes from "./coupon.routes.js";
@@ -31,6 +32,7 @@ router.use("/products", productRoutes);
 router.use("/uploads", uploadRoutes);
 router.use("/notifications", notificationRoutes);
 router.use("/admin", adminRoutes);
+router.use("/ai", aiRoutes);
 router.use("/orders", orderRoutes);
 router.use("/reviews", reviewRoutes);
 router.use("/coupons", couponRoutes);

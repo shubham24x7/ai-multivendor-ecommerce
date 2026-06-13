@@ -1,4 +1,5 @@
-import { AlertTriangle, Bot, ShieldCheck, Store, Users } from "lucide-react";
+import Link from "next/link";
+import { AlertTriangle, BarChart3, Bot, ShieldCheck, Store, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -93,6 +94,23 @@ export default function AdminDashboardPage() {
                 <AlertTriangle className="h-4 w-4 text-primary" />
                 3 flagged generations require review.
               </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <BarChart3 className="h-5 w-5 text-primary" />
+                Platform analytics
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-sm text-muted-foreground">
+                Monitor revenue, active group buys, users, sellers, products, and event trends.
+              </p>
+              <Button asChild variant="outline">
+                <Link href="/analytics">Open analytics</Link>
+              </Button>
             </CardContent>
           </Card>
         </div>

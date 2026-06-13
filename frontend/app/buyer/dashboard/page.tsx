@@ -1,4 +1,6 @@
-import { PackageCheck, Sparkles, WalletCards, Heart } from "lucide-react";
+import Link from "next/link";
+import { HandCoins, PackageCheck, Sparkles, Users, WalletCards, Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { StatCard } from "@/components/dashboard/stat-card";
@@ -57,6 +59,38 @@ export default function BuyerDashboardPage() {
                 Ask for budget-aware recommendations, compare saved products, or discover nearby
                 sellers once backend AI services are connected.
               </p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Users className="h-5 w-5 text-primary" />
+                Group buys
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-sm text-muted-foreground">
+                Join active buying groups and unlock quantity-based discounts.
+              </p>
+              <Button asChild variant="outline">
+                <Link href="/group-buying">Browse groups</Link>
+              </Button>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <HandCoins className="h-5 w-5 text-primary" />
+                Negotiations
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-sm text-muted-foreground">
+                Start offers and use AI-assisted price suggestions.
+              </p>
+              <Button asChild variant="outline">
+                <Link href="/negotiations">Open negotiations</Link>
+              </Button>
             </CardContent>
           </Card>
           <Card>

@@ -1,4 +1,5 @@
-import { BadgeCheck, Boxes, ClipboardList, WandSparkles } from "lucide-react";
+import Link from "next/link";
+import { BadgeCheck, Boxes, ClipboardList, ShieldCheck, Users, WandSparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -84,6 +85,40 @@ export default function SellerDashboardPage() {
               <p className="text-sm text-muted-foreground">
                 Seller order routing is ready for backend order and Socket.io events.
               </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <ShieldCheck className="h-5 w-5 text-primary" />
+                Trust score
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-sm text-muted-foreground">
+                Fulfillment, returns, reviews, and delivery metrics power seller badge levels.
+              </p>
+              <Button asChild variant="outline">
+                <Link href="/analytics">View analytics</Link>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Users className="h-5 w-5 text-primary" />
+                Group sales
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-sm text-muted-foreground">
+                Create group buys with dynamic discount tiers and auto-close logic.
+              </p>
+              <Button asChild variant="outline">
+                <Link href="/group-buying">Manage groups</Link>
+              </Button>
             </CardContent>
           </Card>
         </div>

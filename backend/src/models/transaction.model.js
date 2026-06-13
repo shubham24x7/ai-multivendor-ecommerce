@@ -17,6 +17,9 @@ const transactionSchema = new mongoose.Schema(
       default: "none"
     },
     providerTransactionId: String,
+    providerOrderId: String,
+    providerRefundId: String,
+    idempotencyKey: String,
     amount: { type: Number, required: true },
     currency: { type: String, required: true },
     status: {

@@ -41,3 +41,15 @@ export function getIO() {
   }
   return io;
 }
+
+export function emitToUser(userId, event, payload) {
+  getIO().to(`user:${userId}`).emit(event, payload);
+}
+
+export function emitToRole(role, event, payload) {
+  getIO().to(`role:${role}`).emit(event, payload);
+}
+
+export function emitToRoom(room, event, payload) {
+  getIO().to(room).emit(event, payload);
+}

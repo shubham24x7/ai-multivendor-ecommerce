@@ -1,15 +1,33 @@
 "use client";
 
+import { useState } from "react";
 import { CreditCard, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { MainLayout } from "@/components/layout/main-layout";
 import { useCart } from "@/hooks/use-cart";
+import { createPaymentIntent, type PaymentProvider } from "@/services/payment-service";
 import { formatCurrency } from "@/utils/formatters";
 
 export default function CheckoutPage() {
   const { items, subtotal } = useCart();
+  const [provider, setProvider] = useState<PaymentProvider>("stripe");
+  const [paymentStatus, setPaymentStatus] = useState<string>("");
+
+  async function handleCreateIntent() {
+    setPaymentStatus("Creating payment intent...");
+    try {
+      const result = await createPaymentIntent({
+        provider,
+        amount: subtotal,
+        currency: "USD"
+      });
+      setPaymentStatus(`Created ${provider} intent: ${result.transaction?._id ?? "ready"}`);
+    } catch (error) {
+      setPaymentStatus(error instanceof Error ? error.message : "Payment intent failed");
+    }
+  }
 
   return (
     <MainLayout>
@@ -40,9 +58,15 @@ export default function CheckoutPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="grid gap-3 sm:grid-cols-3">
-                <Button variant="outline">Stripe</Button>
-                <Button variant="outline">Razorpay</Button>
-                <Button variant="outline">PayPal</Button>
+                {(["stripe", "razorpay", "paypal"] as PaymentProvider[]).map((item) => (
+                  <Button
+                    key={item}
+                    variant={provider === item ? "default" : "outline"}
+                    onClick={() => setProvider(item)}
+                  >
+                    {item[0].toUpperCase() + item.slice(1)}
+                  </Button>
+                ))}
               </CardContent>
             </Card>
           </div>
@@ -64,9 +88,10 @@ export default function CheckoutPage() {
                 <span>Total</span>
                 <span>{formatCurrency(subtotal)}</span>
               </div>
-              <Button className="mt-6 w-full" disabled={items.length === 0}>
-                Place order
+              <Button className="mt-6 w-full" disabled={items.length === 0} onClick={handleCreateIntent}>
+                Create payment intent
               </Button>
+              {paymentStatus ? <p className="mt-3 text-sm text-muted-foreground">{paymentStatus}</p> : null}
             </CardContent>
           </Card>
         </div>

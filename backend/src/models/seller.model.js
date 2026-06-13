@@ -26,6 +26,18 @@ const sellerSchema = new mongoose.Schema(
     },
     rejectionReason: String,
     trustScore: { type: Number, min: 0, max: 100, default: 50 },
+    trustBadge: {
+      type: String,
+      enum: ["bronze", "silver", "gold", "platinum"],
+      default: "bronze",
+      index: true
+    },
+    trustMetrics: {
+      fulfillmentRate: { type: Number, default: 0 },
+      returnRate: { type: Number, default: 0 },
+      reviewScore: { type: Number, default: 0 },
+      deliveryScore: { type: Number, default: 0 }
+    },
     ratingAverage: { type: Number, default: 0 },
     ratingCount: { type: Number, default: 0 }
   },
